@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NOIR — Creative Digital Studio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{--bg:#080808;--card:#111;--line:#242424;--text:#f5f3ed;--muted:#858585;--lime:#c8ff32;--purple:#7c5cff}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{width:100%;height:100%;object-fit:cover;display:block}
+.cursor{position:fixed;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,#c8ff3215,transparent 68%);pointer-events:none;z-index:1;transform:translate(-50%,-50%)}
+header{height:72px;padding:0 4vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:fixed;top:0;left:0;width:100%;z-index:50;background:#080808d9;backdrop-filter:blur(15px)}
+.logo{font:700 22px "Space Grotesk";letter-spacing:-.08em}
+.logo i{font-style:normal;color:var(--lime)}
+nav{display:flex;gap:28px}
+nav a{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:#aaa;transition:.3s}
+nav a:hover{color:var(--lime)}
+.header-btn{border:1px solid #444;border-radius:30px;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+.header-btn:hover{background:var(--lime);color:#000;border-color:var(--lime)}
+.menu{display:none;background:none;border:0;color:white;font-size:10px}
+
+section{padding:85px 5vw}
+.hero{min-height:100vh;padding-top:125px;display:grid;grid-template-columns:1.15fr .85fr;gap:25px;align-items:center;position:relative}
+.hero:before{content:"";position:absolute;width:500px;height:500px;right:5%;top:10%;background:var(--purple);filter:blur(180px);opacity:.12}
+.kicker{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+h1{font:600 clamp(62px,9.5vw,145px)/.78 "Space Grotesk";letter-spacing:-.095em;text-transform:uppercase}
+h1 span{color:transparent;-webkit-text-stroke:1px #eee}
+.hero-copy{max-width:440px;color:#888;font-size:14px;line-height:1.7;margin-top:30px}
+.hero-actions{display:flex;gap:12px;margin-top:24px}
+.btn{background:var(--lime);color:#050505;padding:13px 19px;border-radius:2px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.btn.alt{background:transparent;color:white;border:1px solid #444}
+.btn.alt:hover{border-color:var(--lime);color:var(--lime)}
+.hero-image{height:590px;position:relative;overflow:hidden;background:#111}
+.hero-image img{filter:saturate(.75);transition:transform 1.2s}
+.hero-image:hover img{transform:scale(1.06)}
+.image-label{position:absolute;bottom:18px;left:18px;right:18px;display:flex;justify-content:space-between;font-size:9px;text-transform:uppercase;letter-spacing:.15em;background:#0009;padding:12px}
+
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:15px 0;white-space:nowrap}
+.track{display:inline-flex;animation:scroll 18s linear infinite}
+.track span{font:600 16px "Space Grotesk";text-transform:uppercase;margin:0 24px;color:#aaa}
+.track b{color:var(--lime);font-size:12px}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+.intro{display:grid;grid-template-columns:.7fr 1.3fr;gap:30px;align-items:start}
+.bigcopy{font:500 clamp(38px,5.5vw,78px)/.9 "Space Grotesk";letter-spacing:-.07em}
+.bigcopy em{font-style:normal;color:var(--lime)}
+.smallcopy{color:#888;max-width:600px;line-height:1.8;font-size:14px}
+
+.work-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:25px}
+.work-head h2,.services h2{font:500 clamp(42px,6vw,82px)/.85 "Space Grotesk";letter-spacing:-.08em;text-transform:uppercase}
+.counter{font-size:9px;color:#666}
+.work-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}
+.project{position:relative;overflow:hidden;background:#111}
+.project.large{height:620px;grid-row:span 2}
+.project.small{height:303px}
+.project img{transition:transform .8s cubic-bezier(.2,.7,.2,1);filter:brightness(.72) saturate(.75)}
+.project:hover img{transform:scale(1.09);filter:brightness(.9) saturate(1)}
+.project-info{position:absolute;left:18px;right:18px;bottom:18px;display:flex;justify-content:space-between;align-items:end}
+.project-title{font:500 25px "Space Grotesk";letter-spacing:-.05em}
+.project-meta{font-size:8px;letter-spacing:.15em;color:#bbb;text-transform:uppercase;margin-top:5px}
+.project-arrow{width:38px;height:38px;border:1px solid #ffffff55;border-radius:50%;display:grid;place-items:center;transition:.3s}
+.project:hover .project-arrow{background:var(--lime);color:#000;border-color:var(--lime);transform:rotate(45deg)}
+
+.ticker{background:var(--lime);color:#050505;padding:12px 0;overflow:hidden;white-space:nowrap;transform:rotate(-1deg) scale(1.02);margin:15px 0}
+.ticker .track{animation-duration:12s}
+.ticker span{color:#050505;font-size:14px}
+
+.services{background:#0d0d0d}
+.service-list{margin-top:35px;border-top:1px solid var(--line)}
+.service{display:grid;grid-template-columns:55px 1fr 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--line);transition:.35s}
+.service:hover{padding-left:12px;background:#111}
+.num{color:#666;font-size:9px}
+.service h3{font:500 28px "Space Grotesk";letter-spacing:-.05em}
+.service p{color:#777;font-size:12px;line-height:1.6;max-width:400px}
+
+.gallery{display:grid;grid-template-columns:.65fr 1.35fr;gap:14px}
+.gallery .g-img{height:450px;overflow:hidden}
+.gallery .g-img:first-child{height:600px;margin-top:70px}
+.gallery img{filter:grayscale(.3);transition:.7s}
+.g-img:hover img{transform:scale(1.07);filter:grayscale(0)}
+.g-copy{padding:18px 0}
+.g-copy h3{font:500 28px "Space Grotesk";letter-spacing:-.05em}
+.g-copy p{color:#777;font-size:11px;margin-top:5px}
+
+.cta{padding:95px 5vw;border-top:1px solid var(--line);position:relative;overflow:hidden}
+.cta:after{content:"NOIR";position:absolute;right:-30px;bottom:-75px;font:800 230px "Space Grotesk";color:#ffffff04;letter-spacing:-.12em}
+.cta h2{font:500 clamp(55px,9vw,130px)/.78 "Space Grotesk";letter-spacing:-.09em;text-transform:uppercase}
+.cta h2 span{color:var(--lime)}
+.cta-link{display:inline-block;margin-top:28px;color:var(--lime);font-size:12px;border-bottom:1px solid var(--lime);padding-bottom:5px}
+
+footer{padding:22px 5vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#555;font-size:9px;text-transform:uppercase;letter-spacing:.12em}
+
+.reveal{opacity:0;transform:translateY(35px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+.reveal.show{opacity:1;transform:none}
+.hero .hero-content>*{opacity:0;transform:translateY(25px);animation:up .8s forwards}
+.hero .kicker{animation-delay:.1s}.hero h1{animation-delay:.25s}.hero-copy{animation-delay:.4s}.hero-actions{animation-delay:.55s}
+@keyframes up{to{opacity:1;transform:none}}
+.spin{animation:spin 8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:800px){
+nav,.header-btn{display:none}.menu{display:block}
+.hero{grid-template-columns:1fr;padding-top:120px}
+.hero-image{height:430px;margin-top:25px}
+.intro{grid-template-columns:1fr;gap:25px}
+.work-grid{grid-template-columns:1fr}.project.large{height:450px;grid-row:auto}.project.small{height:300px}
+.gallery{grid-template-columns:1fr}.gallery .g-img:first-child{height:400px;margin-top:0}
+.service{grid-template-columns:35px 1fr}.service p{grid-column:2}
+}
+@media(max-width:480px){
+section{padding:65px 5vw}h1{font-size:62px}.hero{min-height:auto;padding-bottom:70px}.hero-image{height:350px}
+.bigcopy{font-size:40px}.project.large{height:390px}.cta{padding:75px 5vw}
+}
+</style>
+</head>
+
+<body>
+<div class="cursor"></div>
+
+<header>
+<a href="#home" class="logo">N<i>/</i>R</a>
+<nav>
+<a href="#home">Home</a><a href="#about">About</a><a href="#work">Work</a><a href="#services">Services</a><a href="#contact">Contact</a>
+</nav>
+<a href="#contact" class="header-btn">Let's Talk ↗</a>
+<button class="menu">Menu</button>
+</header>
+
+<section id="home" class="hero">
+<div class="hero-content">
+<p class="kicker">Independent Digital Studio · 2026</p>
+<h1>Design<br><span>Without</span><br>Limits.</h1>
+<p class="hero-copy">We build bold identities, digital experiences and websites for people who refuse to blend in.</p>
+<div class="hero-actions"><a class="btn" href="#work">View Work ↗</a><a class="btn alt" href="#about">Our Story</a></div>
+</div>
+<div class="hero-image reveal">
+<img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=85" alt="Creative digital workspace">
+<div class="image-label"><span>Selected / 001</span><span>Scroll ↓</span></div>
+</div>
+</section>
+
+<div class="marquee">
+<div class="track"><span>Creative Direction <b>✦</b></span><span>Digital Design <b>✦</b></span><span>Development <b>✦</b></span><span>Brand Identity <b>✦</b></span><span>Creative Direction <b>✦</b></span><span>Digital Design <b>✦</b></span><span>Development <b>✦</b></span><span>Brand Identity <b>✦</b></span></div>
+</div>
+
+<section id="about">
+<div class="intro">
+<div class="reveal"><p class="kicker">01 / About</p><p class="bigcopy">We make <em>noise</em> in a world full of silence.</p></div>
+<div class="smallcopy reveal"><p>NOIR is an independent creative studio focused on making digital work that feels impossible to ignore.</p><br><p>Strategy, design, motion and code live under one roof. No bloated process. No safe ideas. Just sharp thinking and obsessive attention to detail.</p></div>
+</div>
+</section>
+
+<div class="ticker"><div class="track"><span>Make It Move ✦ Make It Matter ✦ Make It Memorable ✦ Make It Move ✦ Make It Matter ✦ Make It Memorable ✦</span><span>Make It Move ✦ Make It Matter ✦ Make It Memorable ✦</span></div></div>
+
+<section id="work">
+<div class="work-head reveal"><div><p class="kicker">02 / Selected Work</p><h2>Recent<br>Experiments.</h2></div><span class="counter">03 / 06</span></div>
+<div class="work-grid">
+<article class="project large reveal"><img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=85" alt="Brand design project"><div class="project-info"><div><p class="project-title">AETHER</p><p class="project-meta">Identity / Digital / 2026</p></div><span class="project-arrow">↗</span></div></article>
+<article class="project small reveal"><img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1000&q=85" alt="Web design project"><div class="project-info"><div><p class="project-title">FORM/01</p><p class="project-meta">Web / Experience</p></div><span class="project-arrow">↗</span></div></article>
+<article class="project small reveal"><img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&w=1000&q=85" alt="Creative studio project"><div class="project-info"><div><p class="project-title">MONO</p><p class="project-meta">Campaign / Art Direction</p></div><span class="project-arrow">↗</span></div></article>
+</div>
+</section>
+
+<section id="services" class="services">
+<div class="reveal"><p class="kicker">03 / Capabilities</p><h2>What We<br>Do Best.</h2></div>
+<div class="service-list">
+<div class="service reveal"><span class="num">01</span><h3>Creative Direction</h3><p>Big ideas, visual concepts and a clear point of view that gives brands their own voice.</p></div>
+<div class="service reveal"><span class="num">02</span><h3>Digital Design</h3><p>Distinctive interfaces built around typography, movement, hierarchy and human behavior.</p></div>
+<div class="service reveal"><span class="num">03</span><h3>Web Development</h3><p>Fast, responsive experiences engineered with clean code and obsessive attention to detail.</p></div>
+<div class="service reveal"><span class="num">04</span><h3>Brand Identity</h3><p>Flexible systems that stay recognizable everywhere your brand needs to show up.</p></div>
+</div>
+</section>
+
+<section class="gallery">
+<div class="reveal"><div class="g-img"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1000&q=85" alt="Design detail"></div><div class="g-copy"><h3>Details matter.</h3><p>TYPE / IMAGE / MOTION</p></div></div>
+<div class="reveal"><div class="g-img"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Creative office"></div><div class="g-copy"><h3>Ideas need room to breathe.</h3><p>SPACE / FORM / FUNCTION</p></div></div>
+</section>
+
+<section id="contact" class="cta">
+<p class="kicker reveal">04 / Start Something</p>
+<h2 class="reveal">Have an<br><span>idea?</span><br>Let's make it loud.</h2>
+<a class="cta-link reveal" href="mailto:hello@noir.studio">hello@noir.studio ↗</a>
+</section>
+
+<footer><span>© 2026 NOIR STUDIO</span><span>Built for attention.</span><a href="#home">Back to top ↑</a></footer>
+
+<script>
+const cursor=document.querySelector('.cursor');
+window.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
+document.querySelector('.menu').addEventListener('click',()=>alert('Use the navigation links to explore the page.'));
+</script>
+</body>
+</html>
